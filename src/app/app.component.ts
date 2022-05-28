@@ -24,4 +24,12 @@ export class AppComponent {
     });
   }
 
+  onChangeFirst = () => {
+    this.serverElements[0].name = 'Changed!'
+  }
+
+  onDestoyFirst = () => {
+    this.serverElements.splice(0,1)
+  }
+
 }
