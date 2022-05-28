@@ -5,7 +5,9 @@ import { Component,
         ViewEncapsulation,
         SimpleChanges,
         DoCheck,
-        OnDestroy
+        OnDestroy,
+        ContentChild,
+        ElementRef
 } from '@angular/core';
 
 @Component({
@@ -17,6 +19,7 @@ import { Component,
 export class ServerElementComponent implements OnInit, OnChanges, DoCheck, OnDestroy {
   @Input('srvElement') element!: {type: string, name:string, content:string} ;
   @Input() name!:string
+  @ContentChild('contentParagraph') paragraph!: ElementRef;
 
   constructor() {
     console.log('constructor called!')
@@ -31,13 +34,21 @@ export class ServerElementComponent implements OnInit, OnChanges, DoCheck, OnDes
 
   ngOnInit(): void {
     console.log('ngOnInit called!')
-
+    console.log('Text on content of paragraph', this.paragraph?.nativeElement?.textContent)
   }
 
   ngDoCheck(): void {
     console.log('ngDoCheck called!')
     //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.
     //Add 'implements DoCheck' to the class.
+
+  }
+
+  ngAfterContentInit(): void {
+    console.log('Text after content of paragraph', this.paragraph.nativeElement.textContent)
+
+    //Called after ngOnInit when the component's or directive's content has been initialized.
+    //Add 'implements AfterContentInit' to the class.
 
   }
 
