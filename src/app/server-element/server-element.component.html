@@ -3,10 +3,7 @@
     class="card mt-1">
     <div class="card-header">{{ element.name }}</div>
     <div class="list-group-item">
-      <p>
-        <strong *ngIf="element.type === 'server'" style="color: red">{{ element.content }}</strong>
-        <em *ngIf="element.type === 'blueprint'">{{ element.content }}</em>
-      </p>
+      <ng-content></ng-content>
     </div>
   </div>
 </div>
